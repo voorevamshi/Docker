@@ -1,0 +1,19 @@
+version: "v3"
+services: 
+    app:
+        container_name: nginx_webapp
+        image: nginx
+        links:
+            - mydb
+        depends_on:
+            - mydb
+    tom:
+        container_name: tomcat_webapp
+        image: tomcat
+        ports:
+            -6767:8080
+    mydb:
+        container_name: mydb
+        image: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD:test
