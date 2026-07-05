@@ -13,10 +13,7 @@ docker --version
 ```
 #### Step 2 — Start Redis container
 ```
-docker run -d \
-  --name redis-local \
-  -p 6379:6379 \
-  redis:7-alpine
+docker run -d --name redis-local  -p 6379:6379 redis:7-alpine
   ```
   Verify it's running:
   ```
