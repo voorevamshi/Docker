@@ -7,8 +7,8 @@ Dockerfile
 
 ```
 FROM eclipse-temurin:21-jdk-jammy  
-COPY target/inventory-service-0.0.1-SNAPSHOT.jar inventory-app.jar  
-ENTRYPOINT ["java","-jar","/inventory-app.jar"]
+COPY target/inventory-service-0.0.1-SNAPSHOT.jar inventory-service.jar  
+ENTRYPOINT ["java","-jar","/inventory-service.jar"]
 
 
 ```
@@ -26,7 +26,7 @@ If your local Maven/Gradle setup builds the `inventory-service-0.0.1.jar` using 
 
 ## 2. Updated Build and Push Commands
 
-I recommend using a simpler "tag" name for the image itself (like `inventory-api`) even if the jar file name is long. This makes typing commands much easier.
+I recommend using a simpler "tag" name for the image itself (like `inventory-service`) even if the jar file name is long. This makes typing commands much easier.
 
 ### Step A: Build the Image
 
@@ -35,12 +35,12 @@ Run this in your terminal at the project root:
 
 
 ```
-docker build -t your-dockerhub-username/inventory-api:v1 .
+docker build -t your-dockerhub-username/inventory-service:v1 .
 
 ```
 After creating docker image check docker image in images tab of docker desktop.
 ```
-docker run -p 8080:8080 your-dockerhub-username/inventory-api:v1
+docker run -p 8080:8080 your-dockerhub-username/inventory-service:v1
 ```
 In Containers tab. You will see your app running. You can click the "logs" to see your Spring Boot startup sequence.
 **When you run docker run, Docker follows a specific logic:**
@@ -56,7 +56,7 @@ docker login
 ```
 Now, send it to the cloud:
 ```
-docker push your-dockerhub-username/inventory-api:v1
+docker push your-dockerhub-username/inventory-service:v1
 ```
 
 ----------
