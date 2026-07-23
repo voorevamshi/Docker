@@ -2,5 +2,5 @@
 
 [← Back to README](../README.md)
 
-- [inventory-service Docker image run](inventoryServiceDockerImageRun.md)
+- [all-services Docker image run](inventoryServiceDockerImageRun.md)
 - [Redis Docker image image run](redisDockerImageRun.md)
