@@ -4,12 +4,26 @@
 
 Docker image directly from your local command prompt (or terminal), you use the **`docker run`** command.
 
-Here is the exact command you need to run:
+The format for port mapping in Docker is always **`HOST:CONTAINER`** (External:Internal).
 
-DOS
+Here is how your two commands actually map out:
+
+Bash
 
 ```
 docker run -d -p 8080:8080 --name inventory-service your-dockerhub-username/inventory-service:latest
+
+```
+
+-   **First `8080` (HOST/Outside):** The port on your laptop or EC2 machine that you type into the browser (e.g., `localhost:8080`).
+    
+-   **Second `8080` (CONTAINER/Inside):** The port Tomcat/Spring Boot is internally listening on inside the container.
+
+```
+Ex:
+docker run -d -p 8081:8080 --name inventory-service vamshivoore/inventory-service:latest
+docker run -d -p 8082:8080 --name product-service-loadtest vamshivoore/product-service-loadtest:latest
+
 
 ```
 
