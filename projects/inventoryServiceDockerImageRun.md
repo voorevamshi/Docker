@@ -22,13 +22,18 @@ docker run -d -p 8080:8080 --name inventory-service your-dockerhub-username/inve
 ```
 Ex:
 docker run -d -p 8081:8080 --name inventory-service vamshivoore/inventory-service:latest
+--> inventory-service connects h2 database no dependecy
 docker run -d -p 8082:8080 --name product-service-loadtest vamshivoore/product-service-loadtest:latest
+--> product-service-loadtest connects h2 database no dependecy
 docker run -d -p 8083:8080 --name spring-order-service vamshivoore/spring-order-service:latest
+--> spring-order-service connects mysql database so need to connect first mysql database
 docker run -d -p 8084:8080 --name memory-leak-prometheus vamshivoore/memory-leak-prometheus:latest
+--> memory-leak-prometheus connects prometheus and Graphana those are not mandatory it will not break
 docker run -d -p 8085:8080 --name springboot-crud-k8s vamshivoore/springboot-crud-k8s:latest
-
-
+--> springboot-crud-k8s connects mysql database so need to connect first mysql database
 ```
+
+- [Database dependency](databaseDependency.md)
 
 _(Be sure to replace `your-dockerhub-username` with your actual Docker Hub username, e.g., `vamshivoore`)._
 
@@ -58,12 +63,16 @@ _(Be sure to replace `your-dockerhub-username` with your actual Docker Hub usern
 
 ```
     docker start inventory-service
+    docker start spring-order-service
 ```
     
 -   **View the Spring Boot logs:**
     
     ```
     docker logs -f inventory-service
+    docker logs -f product-service-loadtest
+    docker logs -f memory-leak-prometheus
+    docker logs -f spring-order-service
     
     ```
     
@@ -74,8 +83,12 @@ _(Be sure to replace `your-dockerhub-username` with your actual Docker Hub usern
     
     ```
     
--   **Start it again after stopping:**
-    
+-   **Force-Remove the Stuck Container **
+Since docker stop failed, force Docker to tear down the container and its resources:
+```
+    docker rm -f inventory-service
+    docker rm -f spring-order-service
+```    
+If docker rm -f hangs or gives an error, restart your local Docker Engine/Desktop to clean up the orphaned process
     ```
-    docker start inventory-service
-    ```
+
