@@ -23,6 +23,9 @@ docker run -d -p 8080:8080 --name inventory-service your-dockerhub-username/inve
 Ex:
 docker run -d -p 8081:8080 --name inventory-service vamshivoore/inventory-service:latest
 docker run -d -p 8082:8080 --name product-service-loadtest vamshivoore/product-service-loadtest:latest
+docker run -d -p 8083:8080 --name spring-order-service vamshivoore/spring-order-service:latest
+docker run -d -p 8084:8080 --name memory-leak-prometheus vamshivoore/memory-leak-prometheus:latest
+docker run -d -p 8085:8080 --name springboot-crud-k8s vamshivoore/springboot-crud-k8s:latest
 
 
 ```
@@ -51,6 +54,11 @@ _(Be sure to replace `your-dockerhub-username` with your actual Docker Hub usern
     docker ps
     
     ```
+-   **If you don't need to pull a new image version and just want to turn that stopped container back on, start it directly:**
+
+```
+    docker start inventory-service
+```
     
 -   **View the Spring Boot logs:**
     
