@@ -73,7 +73,7 @@ _(Be sure to replace `your-dockerhub-username` with your actual Docker Hub usern
     docker logs -f product-service-loadtest
     docker logs -f memory-leak-prometheus
     docker logs -f spring-order-service
-    
+    docker logs -f springboot-crud-k8s
     ```
     
 -   **Stop the container:**
@@ -88,6 +88,7 @@ Since docker stop failed, force Docker to tear down the container and its resour
 ```
     docker rm -f inventory-service
     docker rm -f spring-order-service
+    docker rm -f springboot-crud-k8s
 ```    
 If docker rm -f hangs or gives an error, restart your local Docker Engine/Desktop to clean up the orphaned process
     ```
