@@ -53,6 +53,14 @@ docker run -d -p 8083:8080 ^
   -e DB_NAME=order_db ^
   -e DB_PORT=3306 ^
   vamshivoore/spring-order-service:latest
+
+  docker run -d -p 8085:8080 ^
+  --name springboot-crud-k8s ^
+  --network app-network ^
+  -e DB_HOST=mysql-db ^
+  -e DB_NAME=vmc_order ^
+  -e DB_PORT=3306 ^
+  vamshivoore/springboot-crud-k8s:latest
 ```
 
 -   **Use this if:** You ran `docker run --name mysql-db ...` earlier to spin up MySQL as a container.
